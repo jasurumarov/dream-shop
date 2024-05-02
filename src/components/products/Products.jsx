@@ -61,7 +61,7 @@ const Products = () => {
         <div className="products-section__product__price">
             <div>
                 <p>${el.price}</p>
-                <span><del>$32.8</del></span>
+                <span><del>${el.price / 2}</del></span>
             </div>
             <button>
                 <img src={Cart} alt="cart icon" />

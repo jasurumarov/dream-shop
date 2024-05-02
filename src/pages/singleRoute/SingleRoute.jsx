@@ -32,7 +32,7 @@ const SingleRoute = () => {
             <h5>Stock: <span>{product?.data?.stock}</span></h5>
             <div className="singleRoute__title--prices">
               <h4>{product?.data?.price}$</h4>
-              <p><del>{product?.data?.price - 100}$</del></p>
+              <p><del>{product?.data?.price / 2}$</del></p>
             </div>
           </div>
         </div>
