@@ -9,7 +9,7 @@ import { IoStar } from 'react-icons/io5'
 
 const SingleRoute = () => {
     const {id} = useParams()
-    const {data: product, loading} = useFetch(`products/${id}`)
+    const {data: product, loading} = useFetch(`products/${id}`, id)
 
     let card = (
         <div className="singleRoute__content">
