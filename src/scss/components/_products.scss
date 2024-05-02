@@ -10,6 +10,14 @@
             margin-bottom: 40px;
             cursor: pointer;
             user-select: none;
+            &:hover {
+                color: white;
+                background: #DC780B;
+            }
+        }
+        .category.active {
+            color: white;
+            background: #DC780B;
         }
         .swiper-button-next, .swiper-button-prev {
             top: 20px;

@@ -13,11 +13,18 @@ import { Button } from '@mui/material'
 
 const Products = () => {
   const [count, setCount] = useState(1)
-  const {data: products, loading} = useFetch(`/products?limit=${count * 8}`, count)
+  const [categoryName, setCategoryName] = useState("all")
   const {data: categories} = useFetch(`/products/categories`)
-
+  
+  let url = `/products${categoryName === "all" ? `?limit=${count * 8}` : `/category/${categoryName}?limit=${count * 4}`}`
+  const {data: products, loading} = useFetch(url, categoryName, count)
+  
+  const handleCategoryClick = (category) => {
+    setCategoryName(category);
+  };
+  
   let categoryItems = categories?.data?.map((el , i) => (
-    <SwiperSlide className='category' key={i}>{el[0].toUpperCase() + el.slice(1)}</SwiperSlide>
+    <SwiperSlide onClick={() => handleCategoryClick(el)} className={`category ${categoryName === el ? "active" : ""}`} key={i}>{el[0].toUpperCase() + el.slice(1)}</SwiperSlide>
   ))
 
   let loadingItem = Array(8).fill("").map((el, i) => (
@@ -105,7 +112,7 @@ const Products = () => {
           modules={[Navigation]}
           className="category-swiper"
         >
-          <SwiperSlide className='category'>All</SwiperSlide>
+          <SwiperSlide onClick={() => handleCategoryClick("all")} className={`category ${categoryName === "all" ? "active" : ""}`}>All</SwiperSlide>
           {categoryItems}
         </Swiper>
         <div className="products-section__products">
