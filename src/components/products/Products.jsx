@@ -119,7 +119,7 @@ const Products = () => {
             {cards}
         </div>
         {loading ? <div className="loading">
-            {loadingItem}
+            {categoryName === "all" ? loadingItem : <></>}
         </div> : <></>}
         <div className="seeMore">
           <Button onClick={() => setCount(p => p + 1)} variant="contained" size='large'>See more</Button>
