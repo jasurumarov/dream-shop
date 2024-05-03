@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
 
 // IMAGES
-import Cart from "../../images/cart-card.svg" 
 import { IoStar } from 'react-icons/io5'
 import { Button } from '@mui/material'
+import { RiShoppingCart2Line } from 'react-icons/ri'
 
 const Products = () => {
   const [count, setCount] = useState(1)
   const [categoryName, setCategoryName] = useState("all")
   const {data: categories} = useFetch(`/products/categories`)
   
-  let url = `/products${categoryName === "all" ? `?limit=${count * 8}` : `/category/${categoryName}?limit=${count * 4}`}`
+  let url = `/products${categoryName === "all" ? `?limit=${count * 10}` : `/category/${categoryName}?limit=${count * 5}`}`
   const {data: products, loading} = useFetch(url, categoryName, count)
   
   const handleCategoryClick = (category) => {
@@ -24,10 +20,10 @@ const Products = () => {
   };
   
   let categoryItems = categories?.data?.map((el , i) => (
-    <SwiperSlide onClick={() => handleCategoryClick(el)} className={`category ${categoryName === el ? "active" : ""}`} key={i}>{el[0].toUpperCase() + el.slice(1)}</SwiperSlide>
+    <li onClick={() => handleCategoryClick(el)} className={`category ${categoryName === el ? "active" : ""}`} key={i}>{el[0].toUpperCase() + el.slice(1)}</li>
   ))
 
-  let loadingItem = Array(8).fill("").map((el, i) => (
+  let loadingItem = Array(10).fill("").map((el, i) => (
     <div key={i} className="products-section__product">
       <div className="products-section__product__img"></div>
       <p className='products-section__product__type'></p>
@@ -42,79 +38,45 @@ const Products = () => {
     </div>
   ))
 
-  let cards = products?.data?.products?.map(el => (
+  let cards = products?.data?.map(el => (
     <div key={el.id} className="products-section__product">
         <div className="products-section__product__img">
             <Link to={`/product/${el.id}`}>
-                <img src={el.thumbnail} alt="" />
+                <img src={el.image} alt="" />
             </Link>
         </div>
         <p className='products-section__product__type'>{el.category}</p>
         <p className='products-section__product__title' title={el.title}>{el.title}</p>
         <div className='products-section__product__rating'>
             <span>
-              {new Array(Math.round(el.rating)).fill(<IoStar className='rate'/>)}
+              {new Array(Math.round(el.rating.rate)).fill(<IoStar className='rate'/>)}
             </span>
-            <h5>({el.rating})</h5>
+            <h5>({el.rating.rate})</h5>
         </div>
-        <p className="products-section__product__company">By <span>{el.brand}</span></p>
+        <p className="products-section__product__company">By <span>BrandRows</span></p>
         <div className="products-section__product__price">
             <div>
                 <p>${el.price}</p>
-                <span><del>${el.price / 2}</del></span>
+                <span><del>${Math.round(el.price * 2)}</del></span>
             </div>
             <button>
-                <img src={Cart} alt="cart icon" />
+              <RiShoppingCart2Line />
                 Add
             </button>
         </div>
-        <p className="products-section__product__brand">{el.brand}</p>
+        <p className="products-section__product__brand">{el.category[0].toUpperCase() + el.category.slice(1)}</p>
     </div>
   ))
   return (
     <div className='products-section'>  
       <div className="container">
-        <Swiper
-        navigation={true}
-          loop={true}
-          slidesPerView={1}
-          spaceBetween={10}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            50: {
-              slidesPerView: 1,
-              spaceBetween: 6,
-            },
-            385: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            526: {
-              slidesPerView: 3,
-              spaceBetween: 10,
-            },
-            667: {
-              slidesPerView: 4,
-              spaceBetween: 10,
-            },
-            1000: {
-              slidesPerView: 6,
-              spaceBetween: 20,
-            },
-            1236: {
-              slidesPerView: 7,
-              spaceBetween: 20,
-            },
-          }}
-          modules={[Navigation]}
-          className="category-swiper"
-        >
-          <SwiperSlide onClick={() => handleCategoryClick("all")} className={`category ${categoryName === "all" ? "active" : ""}`}>All</SwiperSlide>
-          {categoryItems}
-        </Swiper>
+        <div className="products-section__title">
+          <h2>Popular Products</h2>
+          <ul>
+              <li className={`category ${categoryName === "all" ? "active" : ""}`} onClick={() => handleCategoryClick("all")} >All</li>
+              {categoryItems}
+          </ul>
+        </div>
         <div className="products-section__products">
             {cards}
         </div>

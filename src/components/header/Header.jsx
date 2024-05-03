@@ -1,92 +1,175 @@
 import React, {useState} from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { useFetch } from '../../hooks/useFetch';
-
-import { styled, alpha } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom'
 
 // IMAGES
-import MenuBtn from '../../images/menu-btn.svg'
-import HomeIcon from '../../images/home-icon.svg'
-import cantFind from '../../images/cantFind.png'
+import SiteLogo from '../../images/site-logo.svg'
+import MenuIcon from '../../images/menuIcon.svg'
+import { IoMenu, IoSearch } from 'react-icons/io5'
+import { CiLocationOn } from 'react-icons/ci'
+import { FaAngleDown, FaRegHeart } from 'react-icons/fa6'
+import { LuUser } from 'react-icons/lu'
+import { GrCart } from 'react-icons/gr'
+import { SlFire, SlRefresh } from 'react-icons/sl'
+import { TfiHeadphoneAlt } from 'react-icons/tfi'
 
 const Header = () => {
-  const [toggle, setToggle] = useState(false)
-  const [value, setValue] = useState("")
-  const {data, error, loading} = useFetch(`products/search?q=${value}`, value)
-  console.log(data);
-
-  const searchItems = data?.data?.products?.map(el => <Link onClick={() => setValue("")} to={`/product/${el.id}`} key={el.id}>
-    <img src={el.images[0]} height={50} width={50} alt="" />
-    <span>{el.title}</span>
-  </Link>)
-  
-
-  const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }));
-  
+    const [toggle, setToggle] = useState(false)
   return (
-    <header>
-        <div className="container">
-          <nav className='navbar'>
-            <div className="navbar__left">
-              <Link className='navbar__logo' to={"/"}>
-                <img src={HomeIcon} alt="home icon" />
-              </Link>
-              <ul className={`navbar__left-list ${toggle ? "show" : ""}`}>
-                <li>
-                  <NavLink className='navbar__left-listItem' to="/">Home</NavLink>
-                </li>
-                <li>
-                  <NavLink className='navbar__left-listItem' to="/about">About us</NavLink>
-                </li>
-                <li>
-                  <NavLink className='navbar__left-listItem' to="contact">Contact us</NavLink>
-                </li>
-                <li>
-                  <NavLink className='navbar__left-listItem' to="register">Login</NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="navbar__right">
-              <div className='navbar__right-search'>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <input className={value.trim() ? "navbar-searchInpt" : ""} value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search…"/>
-                {
-                  value.trim() ?
-                    <div className='navbar-search__content'>
-                      {!data?.data?.products?.length ? 
-                        <div className='notFound'>
-                          <img width={100} src={cantFind} alt="" />
-                          <h3>Product not found</h3>
-                        </div>
-                      : <></>}
-                      {searchItems}
+    <header>    
+        <div className="sup-header">
+            <div className="container">
+                <div className="sup-header__content">
+                    <div className="sup-header__content--left">
+                        <Link to={"/"}>About Us</Link>
+                        <span>|</span>
+                        <Link to={"/register"}>My Account</Link>
+                        <span>|</span>
+                        <Link to={"/"}>Wishlist</Link>
+                        <span>|</span>
+                        <Link to={"/"}>Order Tracking</Link>
                     </div>
-                  : <>  </>
-                }
-              </div>
-              <button onClick={() => setToggle(!toggle)} className="navbar__menu-btn">
-                <img src={MenuBtn} alt="menu btn" />
-              </button>
+                    <div className="sup-header__content--right">
+                        <p>Need help? &nbsp; Call Us:<span>+ 1800 900</span></p>
+                        <span>|</span>
+                        <select name="language" id="language">
+                            <option selected value="en">English</option>
+                            <option value="ru">Russian</option>
+                            <option value="uz">Uzbek</option>
+                        </select>
+                        <span>|</span>
+                        <select name="value" id="value">
+                            <option selected value="usd">USD</option>
+                            <option value="rub">RUB</option>
+                            <option value="sum">UZS</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-          </nav>
         </div>
-      </header>
+        <div className="main-header">
+            <div className="container">
+                <div className="main-header__content">
+                    <Link className='main-header__logo' to={"/"}>
+                        <img src={SiteLogo} alt="Site Logo" />
+                    </Link>
+                    <div className="main-header__search">
+                        <select name="categories" id="categories">
+                            <option selected value="all">All Categories</option>
+                            <option value="el">Mens clothes</option>
+                            <option value="el">Womn clothes</option>
+                            <option value="el">Shoes</option>
+                            <option value="el">Bags</option>
+                            <option value="el">Watches</option>
+                        </select>
+                        <span>|</span>
+                        <input type="search" placeholder='Search for items...' />
+                        <div><IoSearch className='main-header__search--icon'/></div>
+                    </div>
+                    <div className="main-header__nav">
+                        <button>
+                            <CiLocationOn className='main-header__nav--icon'/>
+                            <select name="categories" id="categories">
+                                <option selected disabled>Your Location</option>
+                                <option value="all">Uzbekistan</option>
+                                <option value="all">South Korea</option>
+                                <option value="all">China</option>
+                                <option value="all">Turkey</option>
+                                <option value="all">New Zealand</option>
+                            </select>
+                        </button>
+                        <div>
+                            <Link className='main-header__nav--btns' to={"/"}>
+                                <SlRefresh />
+                                <span>Compare</span>
+                            </Link>
+                            <Link className='main-header__nav--btns' to={"/"}>
+                                <FaRegHeart />
+                                <span>Wishlist</span>
+                            </Link>
+                            <Link className='main-header__nav--btns' to={"/"}>
+                                <GrCart />
+                                <span>Cart</span>
+                            </Link>
+                            <Link className='main-header__nav--btns' to={"/"}>
+                                <LuUser />
+                                <span>Account</span>
+                            </Link>
+                        </div>
+                        <button onClick={() => setToggle(!toggle)} className='menu-btn'><IoMenu /></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="sub-header">
+            <div className="container">
+                <div className="sub-header__content">
+                    <nav className="sub-header__nav">
+                        <button>
+                            <img src={MenuIcon} alt="" />
+                            <span>Browse All Categories</span>
+                            <FaAngleDown />
+                        </button>
+                        <ul className={`sub-header__nav--list ${toggle ? "show" : ""}`}>
+                            <li>
+                                <div>
+                                    <SlFire />
+                                    <span>Deals</span>
+                                </div>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Home</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">About</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Shop</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Vendors</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Mega menu</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Blog</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Pages</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select>
+                                    <option value="">Contact</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div className="sub-header__call">
+                        <TfiHeadphoneAlt />
+                        <div>
+                            <h3>1900 - 888</h3>
+                            <p>24/7 Support Center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
   )
 }
 
 export default Header
-
-
-
-

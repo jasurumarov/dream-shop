@@ -1,0 +1,71 @@
+.benefits-section {
+    margin-top: 45px;
+    margin-bottom: 80px; 
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        div {
+            background-repeat: no-repeat;
+            background-size: 420px !important;
+            max-width: 512.66px;
+            width: 100%;
+            padding: 80.39px 0 73.4px 50px;
+            border-radius: 10px;
+            p {
+                font-family: Quicksand;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 28.8px;
+                color: #253D4E;
+                height: 87.59px;
+                margin-bottom: 20px;
+            }
+            button {
+                font-family: Quicksand;
+                font-weight: 700;
+                background: #3BB77E;
+                color: white;
+                padding: 8px 28px 9px 13px;
+                border-radius: 4px;
+                cursor: pointer;
+                &:active {
+                    transition: .2s;
+                    scale: .97;
+                }
+            }
+        }
+        div:nth-child(1) {
+            background: #F0E8D5;
+            background-image: url("../../../public/images/benefit1.webp");
+            background-repeat: no-repeat;
+            background-size: 240px;
+            background-position: right bottom;
+            p {
+                max-width: 203px;
+            }
+        }
+        div:nth-child(2) {
+            background: #F3E8E8;
+            background-image: url("../../../public/images/benefit2.webp");
+            background-repeat: no-repeat;
+            background-size: 240px;
+            background-position: right bottom;
+            p {
+                max-width: 250px;
+            }
+        }
+        div:nth-child(3) {
+            background: #E7EAF3;
+            background-image: url("../../../public/images/benefit3.webp");
+            background-repeat: no-repeat;
+            background-size: 240px;
+            background-position: right bottom;
+            p {
+                width: 200px;
+            }
+        }
+    }
+}

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useFetch } from '../../hooks/useFetch'
 
 // IMAGES 
-import Rating from '../../images/rating.png'
 import loadingGif from '../../images/loading.gif'
 import { IoStar } from 'react-icons/io5'
 
