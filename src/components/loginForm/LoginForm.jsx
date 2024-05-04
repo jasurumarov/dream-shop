@@ -47,7 +47,7 @@ const LoginForm = () => {
                     </div>
                     <div className="loginForm__input">
                         <label htmlFor="password">Password*</label>
-                        <input onChange={e => setPassword(e.target.value)} value={username} name='email' id='password' required type="password" placeholder='Enter Your Password'/>
+                        <input onChange={e => setPassword(e.target.value)} value={password} name='email' id='password' required type="password" placeholder='Enter Your Password'/>
                     </div>
                     <div className="loginForm__action">
                         <div>

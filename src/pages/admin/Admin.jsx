@@ -2,10 +2,12 @@ import React from 'react'
 import { GrLocation } from 'react-icons/gr'
 import FormImg from '../../images/formImg.png'
 import Delivery from '../../components/delivery/Delivery'
+import ScrollToTop from '../../components/scrollToTop/ScrollToTop'
 
 const Admin = () => {
   return (
     <div className='admin-page'>
+      <ScrollToTop/>
       <div className="admin-panel">
         <div className="container">
           <div className="admin-panel__title">
