@@ -3,8 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 // IMAGES
-import HeroBg1 from '../../images/banner1.png'
-import HeroBg2 from '../../images/banner3.png'
+import HeroBg1 from '../../images/heroBag.png'
+import HeroBg2 from '../../images/heroBag2.png'
 import HeroBg3 from '../../images/banner2.png'
 
 import { Navigation, Autoplay} from 'swiper/modules';
