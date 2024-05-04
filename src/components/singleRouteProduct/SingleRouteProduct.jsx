@@ -129,13 +129,39 @@ const SingleRouteProduct = () => {
             </div>
         </div>
     )
+
+    let skeleton = (
+        <div className="skeleton">
+            <div className="product__left">
+                <div className="product__left-img"></div>
+                <div className="product__left-secondaryImgs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div className="product__right">
+                <div className="product__right-sale"></div>
+                <h3></h3>
+                <div className="product__right-rating"></div>
+                <div className="product__right-price"></div>
+                <p className="product__right-desc"></p>
+                <div className="product__right-sizes"></div>
+                <div className="product__right-btns"></div>
+                <div className="product__right-compositions">
+                    <ul></ul>
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    )
+
     return (
         <div className='single-product'>
             <div className="container">
                 <div className="wrapper">
-                    {loading ? <div className='loading'>
-                        <img src={loadingGif} alt="" />
-                    </div> : <>{product}</>}
+                    {loading ? skeleton : <>{product}</>}
                     <div className="single-product__title none">
                         <div className="single-product__title-btns">
                             <button>Description</button>

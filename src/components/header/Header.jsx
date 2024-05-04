@@ -14,6 +14,7 @@ import { TfiHeadphoneAlt } from 'react-icons/tfi'
 
 const Header = () => {
     const [toggle, setToggle] = useState(false)
+    let token = localStorage.getItem("x-auth-token")
   return (
     <header>    
         <div className="sup-header">
@@ -90,9 +91,9 @@ const Header = () => {
                                 <GrCart />
                                 <span>Cart</span>
                             </Link>
-                            <Link className='main-header__nav--btns' to={"/register"}>
+                            <Link className='main-header__nav--btns' to={`${token ? "/admin" : "/register"}`}>
                                 <LuUser />
-                                <span>Account</span>
+                                <span>{token ? "Admin" : "Account"}</span>
                             </Link>
                         </div>
                         <button onClick={() => setToggle(!toggle)} className='menu-btn'><IoMenu /></button>

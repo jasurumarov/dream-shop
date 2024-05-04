@@ -66,10 +66,10 @@
                 width: 246px;
                 height: 246px;
                 img {
-                    object-fit: cover;
+                    object-fit: contain;
                     transition: .3s;
-                    width: 246px;
-                    height: 246px;
+                    width: 206px;
+                    height: 206px;
                 }
             }
             .products-section__product__type {
