@@ -90,7 +90,7 @@ const Header = () => {
                                 <GrCart />
                                 <span>Cart</span>
                             </Link>
-                            <Link className='main-header__nav--btns' to={"/"}>
+                            <Link className='main-header__nav--btns' to={"/register"}>
                                 <LuUser />
                                 <span>Account</span>
                             </Link>

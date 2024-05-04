@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Products from '../../components/products/Products'
 import Featured from '../../components/featured/Featured'
 import Benefits from '../../components/benefits/Benefits'

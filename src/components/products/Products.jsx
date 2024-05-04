@@ -49,7 +49,7 @@ const Products = () => {
         <p className='products-section__product__title' title={el.title}>{el.title}</p>
         <div className='products-section__product__rating'>
             <span>
-              {new Array(Math.round(el.rating.rate)).fill(<IoStar className='rate'/>)}
+              {new Array(Math.round(el.rating.rate)).fill(<IoStar className='rate'/>)} {new Array(Math.round(5 - el.rating.rate)).fill(<IoStar className='unrate' />)}
             </span>
             <h5>({el.rating.rate})</h5>
         </div>

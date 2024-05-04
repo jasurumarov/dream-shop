@@ -100,8 +100,13 @@
                 gap: 8px;
                 margin-bottom: 7px;
                 span {
-                    svg {
+                    display: flex;
+                    gap: 1px;
+                    .rate {
                         color: #FDC040;
+                    }
+                    .unrate {
+                        color: #B6B6B6;
                     }
                 }
                 h5 {
