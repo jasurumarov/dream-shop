@@ -22,7 +22,7 @@ function App() {
 
   return (
     <>
-      <AnimCursor/>
+      {/* <AnimCursor/> */}
 
       <Header/>
       
